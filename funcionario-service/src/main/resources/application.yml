@@ -1,0 +1,31 @@
+server:
+  port: 9001
+  shutdown: graceful
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      max: 50
+      min-spare: 5
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: funcionario-service
+  main:
+    banner-mode: off
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
+  jpa:
+    repositories:
+      enabled: true
+    auditing:
+      enabled: true
+  datasource:
+    username: user
+    password: password
+    url: jdbc:postgresql://localhost:5432/pontodb_funcionario
+    hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 5

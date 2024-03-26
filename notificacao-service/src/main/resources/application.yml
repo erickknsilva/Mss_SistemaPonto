@@ -1,0 +1,47 @@
+server:
+  port: 9003
+  netty:
+    shutdown: graceful
+    connection-timeout: 2s
+    idle-timeout: 15s
+
+spring:
+  application:
+    name: notificacao-service
+  main:
+    banner-mode: off
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: erickdecker23@gmail.com
+    password: hnaqfnpimerribou
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  config:
+    import: "optional:configserver:"
+  cloud:
+    stream:
+      bindings:
+        pack-in-0:
+          destination: ponto-dispatched
+          group: ${spring.application.name}
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: user
+    password: password
+    connection-timeout: 5s
+
+
+
+
+
+
+
+

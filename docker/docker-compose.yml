@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+
+  ponto-rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: ponto-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+
+  ponto-postgres:
+    image: "postgres:14.4"
+    container_name: "ponto-postgres"
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ./postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
